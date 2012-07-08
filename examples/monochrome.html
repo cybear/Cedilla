@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ç - a canvas micro library</title>
+</head>
+<body>
+<script src="../lib/require.js"></script>
+<script>
+require(
+  {baseUrl:'../lib/'},
+  ['ç', 'filters', 'loadimages'],
+  function(ç, filters, loadimages){
+    "use strict";
+    loadimages(['Lenna.png'], function(imgs){
+      // importing an image, converting to greyscale
+      var img = imgs[0], 
+        width=img.width,
+        height=img.height,
+        myCanvas = ç(width, height);
+      myCanvas.drawImage(img);
+      myCanvas.applyPixelFilter(filters.monochrome);
+      document.body.appendChild(myCanvas.toImage());
+  });
+});
+</script>
+</body>
+</html>
