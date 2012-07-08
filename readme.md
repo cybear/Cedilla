@@ -14,6 +14,7 @@ Admittingly, if you would spell canvas with ç, it would be pronounced |ˈsanvə
 
 ### Usage
 
+```javascript
 require(
   ['ç','filters','loadimages'],
   function(ç, filters, loadimages){
@@ -27,6 +28,7 @@ require(
     }
   }
 );
+```
 
 ## License
 
