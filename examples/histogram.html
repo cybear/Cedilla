@@ -7,7 +7,7 @@
 img{border:1px solid white;padding:0px;margin:10px;background-color:#fff}
 </style>
 </head>
-<body style="background:#ccc">
+<body style="background:#ffe">
 <script src="../lib/require.js"></script>
 <script>
 require(
@@ -66,7 +66,7 @@ require(
             histograph.drawHistogram(histogram, color);
           }
         }
-        document.body.appendChild(histograph.toImage());
+        document.body.appendChild(histograph.el);
       });
   });
 });
