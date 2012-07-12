@@ -40,35 +40,26 @@ require(
 
     loadimages(urls, function(imgs){
       var img = imgs[0], 
-        width=img.width,
-        height=img.height,
-        myCanvas=ç(width, height),
+        myCanvas=ç(img),
         histograph=ç(256, 100),
-        histograph_data = histograph.getData();
-      
-      imgs.forEach(function(img, i){
-        myCanvas.drawImage(img);
-        var histograms = myCanvas.histogram();
-        for(var key in histograms){
-          if(key!=='alpha' && key!=='luminance'){
-            var histogram=histograms[key];
-            var color = {
-              red:'rgba(255,0,0,0.2)',
-              green:'rgba(0,255,0,0.2)',
-              blue:'rgba(0,0,255,0.2)'
-            }[key];
-            histograph.drawHistogram(histogram, color, true);
-            var color = {
-              red:'rgba(255,0,0,1)',
-              green:'rgba(0,255,0,1)',
-              blue:'rgba(0,0,255,1)'
-            }[key];
-            histograph.drawHistogram(histogram, color);
-          }
+        histograph_data = histograph.getData(),
+        histograms = myCanvas.histogram();
+      for(var key in histograms){
+        if(key!=='alpha' && key!=='luminance'){
+          var histogram=histograms[key];
+          var color = {
+            red:'rgba(255,0,0,1)',
+            green:'rgba(0,255,0,1)',
+            blue:'rgba(0,0,255,1)'
+          }[key];
+          histograph.cx.globalAlpha='0.2';
+          histograph.drawHistogram(histogram, color, true);
+          histograph.cx.globalAlpha='1';
+          histograph.drawHistogram(histogram, color);
         }
-        document.body.appendChild(histograph.el);
-      });
-  });
+      }
+      document.body.appendChild(histograph.el);
+    });
 });
 </script>
 </body>
