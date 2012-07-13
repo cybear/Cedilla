@@ -14,20 +14,21 @@ Admittingly, if you would spell canvas with ç, it would be pronounced |ˈsanvə
 
 ### Usage
 
+(examples/monochrome.html)
+
 ```javascript
 require(
-  ['ç','filters','loadimages'],
+  {baseUrl:'../lib/'},
+  ['ç', 'filters', 'loadimages'],
   function(ç, filters, loadimages){
     "use strict";
     loadimages(['Lenna.png'], function(imgs){
-      // importing an image, converting to greyscale
-      var myCanvas = ç(320, 240);
-      myCanvas.drawImage(imgs[0]);
+      var img = imgs[0], 
+        myCanvas = ç(img);
       myCanvas.applyPixelFilter(filters.monochrome);
       document.body.appendChild(myCanvas.toImage());
-    }
-  }
-);
+  });
+});
 ```
 
 ## License

@@ -13,12 +13,8 @@ require(
   function(ç, filters, loadimages){
     "use strict";
     loadimages(['Lenna.png'], function(imgs){
-      // importing an image, converting to greyscale
       var img = imgs[0], 
-        width=img.width,
-        height=img.height,
-        myCanvas = ç(width, height);
-      myCanvas.drawImage(img);
+        myCanvas = ç(img);
       myCanvas.applyPixelFilter(filters.monochrome);
       document.body.appendChild(myCanvas.toImage());
   });
