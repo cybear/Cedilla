@@ -17,8 +17,6 @@ require(
     ç.prototype.drawHistogram = function(histogram, color, fill){
       // todo: color channels should share "max" not have their own "max"
       var h = this.h,
-        max = [].slice.call(histogram).sort(function(a,b){return b-a;})[0],
-        factor = 1 / max * h,
         cx = this.cx;
 
       cx.lineWidth=0.5;
@@ -27,7 +25,7 @@ require(
       cx.moveTo(0.5, h);
 
       histogram.forEach(function(val, i){
-        val *=factor;
+        val=val*h;
         if(fill)cx.moveTo(i+0.5, h);
         cx.lineTo(i+0.5,h-val);
       });
@@ -35,21 +33,34 @@ require(
     };
 
     loadimages(urls, function(imgs){
-      var img = imgs[0], 
+      var i, max=0, histogram,
+        img = imgs[0], 
         myCanvas=ç(img),
         histograph=ç(256, 100),
-        histograph_data = histograph.getData(),
         histograms = myCanvas.histogram();
+      // we ditch alpha in this example
+      delete histograms.alpha;
+      // find max histogram value
       for(var key in histograms){
-        if(key!=='alpha' && key!=='luminance'){
-          var histogram=histograms[key];
+        histogram=histograms[key];
+        for(i=0; i < histogram.length; i++){
+          if(histogram[i]>max)max=histogram[i];
+        }
+      }
+      // scale down values
+      for(var key in histograms){
+        histograms[key]=histograms[key].map(function(item){
+          return item/max;
+        });
+      }
+      for(var key in histograms){
+          histogram=histograms[key];
           histograph.cx.globalAlpha='0.2';
           histograph.drawHistogram(histogram, key, true);
           histograph.cx.globalAlpha='1';
           histograph.drawHistogram(histogram, key);
-        }
       }
-      document.body.appendChild(histograph.el);
+      document.body.appendChild(histograph.toImage());
     });
 });
 </script>
