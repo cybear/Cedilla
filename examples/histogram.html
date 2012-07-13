@@ -3,9 +3,6 @@
 <head>
 <meta charset="utf-8">
 <title>ç - a canvas micro library</title>
-<style>
-img{border:1px solid white;padding:0px;margin:10px;background-color:#fff}
-</style>
 </head>
 <body style="background:#ffe">
 <script src="../lib/require.js"></script>
@@ -31,7 +28,6 @@ require(
 
       histogram.forEach(function(val, i){
         val *=factor;
-        if(val>h) val=h;
         if(fill)cx.moveTo(i+0.5, h);
         cx.lineTo(i+0.5,h-val);
       });
@@ -47,15 +43,10 @@ require(
       for(var key in histograms){
         if(key!=='alpha' && key!=='luminance'){
           var histogram=histograms[key];
-          var color = {
-            red:'rgba(255,0,0,1)',
-            green:'rgba(0,255,0,1)',
-            blue:'rgba(0,0,255,1)'
-          }[key];
           histograph.cx.globalAlpha='0.2';
-          histograph.drawHistogram(histogram, color, true);
+          histograph.drawHistogram(histogram, key, true);
           histograph.cx.globalAlpha='1';
-          histograph.drawHistogram(histogram, color);
+          histograph.drawHistogram(histogram, key);
         }
       }
       document.body.appendChild(histograph.el);
