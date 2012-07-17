@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ç - a canvas micro library</title>
+</head>
+<body>
+  <p class="droppable">Drop images from your computer onto this area to load them</p>
+
+<script src="../lib/require.js"></script>
+<script>
+require(
+  {baseUrl:'../lib/'},
+  ['filedroppable','urltoimg'],
+  function(fileDroppable, urlToImg){
+    "use strict";
+
+    fileDroppable(document.querySelector('.droppable'), function(arr){
+      arr.forEach(function(dataurl){
+        var img=urlToImg(dataurl);
+        document.body.appendChild(img);
+      });
+    });
+});
+</script>
+</body>
+</html>
