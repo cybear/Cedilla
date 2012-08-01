@@ -59,6 +59,7 @@ require(
           histograph.cx.globalAlpha='1';
           histograph.drawHistogram(histogram, key);
       }
+      document.body.appendChild(myCanvas.toImage());
       document.body.appendChild(histograph.toImage());
     });
 });

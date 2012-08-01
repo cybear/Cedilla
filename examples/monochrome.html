@@ -15,6 +15,7 @@ require(
     loadimages(['Lenna.png'], function(imgs){
       var img = imgs[0], 
         myCanvas = ç(img);
+      document.body.appendChild(myCanvas.toImage());
       myCanvas.applyPixelFilter(filters.monochrome);
       document.body.appendChild(myCanvas.toImage());
   });
