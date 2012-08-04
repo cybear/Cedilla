@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ç - a canvas micro library</title>
+</head>
+<body style="background:#ffe">
+<script src="../external/require.js"></script>
+<script>
+require(
+  {baseUrl:'../lib/'},
+  ['loadimages'],
+  function(loadimages){
+    "use strict";
+    var urls=['Lenna.png'];
+    loadimages(urls, function(imgs){
+      document.body.appendChild(imgs[0]);
+    });
+});
+</script>
+</body>
+</html>
