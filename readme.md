@@ -1,3 +1,5 @@
+**Not updated anymore. Use at own risk.**
+
 # cedilla |səˈdilə|
 
 "a mark ( ¸ ) written under the letter c, esp. in French, to show that it is pronounced like an s rather than a k (e.g., façade)."
